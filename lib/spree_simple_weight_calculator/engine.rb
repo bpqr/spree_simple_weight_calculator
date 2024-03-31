@@ -16,8 +16,7 @@ module SpreeSimpleWeightCalculator
         Rails.configuration.cache_classes ? require(c) : load(c)
       end
     end
-
-    initializer 'spree.register.calculators.simple_weight', after: 'spree.register.calculators' do |app|
+    config.after_initialize do |app|
       app.config.spree.calculators.shipping_methods << Spree::Calculator::Shipping::SimpleWeight
       app.config.spree.calculators.shipping_methods << Spree::Calculator::Shipping::ItemWeight
     end
